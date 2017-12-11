@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, Button, Segment, Menu, Dropdown, Icon, Grid, Card, Form, TextArea} from 'semantic-ui-react';
+import {Container, Label, Button, Segment, Menu, Dropdown, Icon, Grid, Card, Form, TextArea} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {addColumn, addItemToColum, removeColumn, toggleColumnInput} from '../../store/actions/board.actions';
 
@@ -49,22 +49,22 @@ class Board extends Component {
               <TextArea name="cardTitle" value={this.state.cardTitle} onChange={(e) => this.handleChange(e)} placeholder='Tell us more' style={{ minHeight: 100 }} />
             </Form.Group>
             <Button.Group attached='bottom'>
-              <Button onClick={ () => this.addCard(column.id, this.state.cardTitle) }>Add</Button>
+              <Button primary onClick={ () => this.addCard(column.id, this.state.cardTitle) }>Add</Button>
               <Button onClick= { () => this.toggleAddCardInput(column.id) }>Cancel</Button>
           </Button.Group>
           </Form>
           : null;
 
         return (
-          <Grid.Column>
+          <Grid.Column style={{maxWidth: 315}}>
             <Menu attached='top' borderless>
-              <Menu.Item><h1>{column.name}</h1></Menu.Item>
+              <Menu.Item><h4>{column.name} <Label circular as='a'>{column.items.length}</Label></h4></Menu.Item>
               <Menu.Menu position='right'>
                 <Menu.Item name='video camera' onClick= { () => this.toggleAddCardInput(column.id) }>
                   <Icon name='plus' />
                 </Menu.Item>
                 <Menu.Item name='video play' onClick= {() => this.removeColumn(column.id)}>
-                  <Icon name='minus' />
+                  <Icon name='ellipsis horizontal' />
                 </Menu.Item>
               </Menu.Menu>
             </Menu>
