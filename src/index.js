@@ -8,7 +8,10 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import boardApp from './store/reducers';
 
-let store = createStore(boardApp)
+let store = createStore(
+  boardApp,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 render(
     <Provider store={store}>
