@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {Container, Button, Segment, Grid} from 'semantic-ui-react';
+import {Container, Button, Segment, Menu, Dropdown, Icon, Grid, Card, Form, TextArea} from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import {addColumn, addItemToColum} from '../../store/actions/board.actions';
+import {addColumn, addItemToColum, removeColumn, toggleColumnInput} from '../../store/actions/board.actions';
 
 import './Board.css';
+import { height } from 'window-size';
 
 class Board extends Component {
   prevId = 0;
@@ -13,11 +14,15 @@ class Board extends Component {
   }
 
   removeColumn = (columnId) => {
-    
+    this.props.dispatch(removeColumn(columnId));
   }
 
-  addCard = (columnToEdit) => {
-    this.props.dispatch(addItemToColum({columnId: columnToEdit, text: 'It\'s item'}));
+  addCard = (columnId) => {
+    this.props.dispatch(addItemToColum({columnId: columnId, text: 'It\'s item'}));
+  }
+
+  toggleAddCardInput = (columnId) => {
+    this.props.dispatch(toggleColumnInput(columnId))
   }
 
   render() {
@@ -26,12 +31,36 @@ class Board extends Component {
             return <p>{item.title}</p>
           })
 
+        const showColumnInput = column.showAddCardInput ? 
+          <Form>
+            <Form.Group inline>
+              <TextArea placeholder='Tell us more' style={{ minHeight: 100 }} />
+            </Form.Group>
+            <Button.Group attached='bottom'>
+              <Button onClick={ () => this.addCard(column.id) }>Add</Button>
+              <Button onClick= { () => this.toggleAddCardInput(column.id) }>Cancel</Button>
+          </Button.Group>
+          </Form>
+          : null;
+
         return (
           <Grid.Column>
-            <Button onClick= { () => this.addCard(column.id) } icon='plus'/>
-            <Button onClick= {() => this.removeColumn(column.id)} icon='minus'/>
-            <p>{column.name}</p>
-            {items}
+            <Menu attached='top' borderless>
+              <Menu.Item><h1>{column.name}</h1></Menu.Item>
+              <Menu.Menu position='right'>
+                <Menu.Item name='video camera' onClick= { () => this.toggleAddCardInput(column.id) }>
+                  <Icon name='plus' />
+                </Menu.Item>
+                <Menu.Item name='video play' onClick= {() => this.removeColumn(column.id)}>
+                  <Icon name='minus' />
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu>
+            <Segment style={{minHeight: 500}} attached='bottom'>
+              {showColumnInput}
+              {items}
+            </Segment>
+
           </Grid.Column>
         )
       })
