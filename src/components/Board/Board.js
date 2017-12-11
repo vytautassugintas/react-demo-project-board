@@ -7,7 +7,13 @@ import './Board.css';
 import { height } from 'window-size';
 
 class Board extends Component {
-  prevId = 0;
+
+  constructor(){
+    super();
+    this.state = {
+      cardTitle: ""
+    }
+  }
 
   addColumn = () => {
     this.props.dispatch(addColumn('random stuff'));
@@ -17,16 +23,22 @@ class Board extends Component {
     this.props.dispatch(removeColumn(columnId));
   }
 
-  addCard = (columnId) => {
-    this.props.dispatch(addItemToColum({columnId: columnId, text: 'It\'s item'}));
+  addCard = (columnId, title) => {
+    this.props.dispatch(addItemToColum({columnId: columnId, text: title}));
+    this.state.cardTitle = "";
   }
 
   toggleAddCardInput = (columnId) => {
     this.props.dispatch(toggleColumnInput(columnId))
   }
 
+  handleChange(e){
+    this.setState({[e.target.name]: e.target.value})
+ }
+
   render() {
     const cols = this.props.board.map(column => {
+        let el = "";
         const items = column.items.map(item => {
             return <p>{item.title}</p>
           })
@@ -34,10 +46,10 @@ class Board extends Component {
         const showColumnInput = column.showAddCardInput ? 
           <Form>
             <Form.Group inline>
-              <TextArea placeholder='Tell us more' style={{ minHeight: 100 }} />
+              <TextArea name="cardTitle" value={this.state.cardTitle} onChange={(e) => this.handleChange(e)} placeholder='Tell us more' style={{ minHeight: 100 }} />
             </Form.Group>
             <Button.Group attached='bottom'>
-              <Button onClick={ () => this.addCard(column.id) }>Add</Button>
+              <Button onClick={ () => this.addCard(column.id, this.state.cardTitle) }>Add</Button>
               <Button onClick= { () => this.toggleAddCardInput(column.id) }>Cancel</Button>
           </Button.Group>
           </Form>
