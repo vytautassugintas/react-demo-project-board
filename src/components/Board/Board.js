@@ -1,10 +1,16 @@
 import React, {Component} from 'react'
-import {Container, Label, Button, Segment, Menu, Dropdown, Icon, Grid, Card, Form, TextArea} from 'semantic-ui-react';
+import {Container, Label, Button, Segment, Menu, Dropdown, Icon, Transition, Grid, Form, TextArea} from 'semantic-ui-react';
 import {connect} from 'react-redux';
+import BoardCard from './Column/Card/Card';
 import {addColumn, addItemToColum, removeColumn, toggleColumnInput} from '../../store/actions/board.actions';
+import { DropTarget } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+import Column from './Column/Column';
 
 import './Board.css';
 import { height } from 'window-size';
+import { setTimeout } from 'core-js/library/web/timers';
 
 class Board extends Component {
 
@@ -37,46 +43,8 @@ class Board extends Component {
  }
 
   render() {
-    const cols = this.props.board.map(column => {
-        let el = "";
-        const items = column.items.map(item => {
-            return <p>{item.title}</p>
-          })
-
-        const showColumnInput = column.showAddCardInput ? 
-          <Form>
-            <Form.Group inline>
-              <TextArea name="cardTitle" value={this.state.cardTitle} onChange={(e) => this.handleChange(e)} placeholder='Tell us more' style={{ minHeight: 100 }} />
-            </Form.Group>
-            <Button.Group attached='bottom'>
-              <Button primary onClick={ () => this.addCard(column.id, this.state.cardTitle) }>Add</Button>
-              <Button onClick= { () => this.toggleAddCardInput(column.id) }>Cancel</Button>
-          </Button.Group>
-          </Form>
-          : null;
-
-        return (
-          <Grid.Column style={{maxWidth: 315}}>
-            <Menu attached='top' borderless>
-              <Menu.Item><h4>{column.name} <Label circular as='a'>{column.items.length}</Label></h4></Menu.Item>
-              <Menu.Menu position='right'>
-                <Menu.Item name='video camera' onClick= { () => this.toggleAddCardInput(column.id) }>
-                  <Icon name='plus' />
-                </Menu.Item>
-                <Menu.Item name='video play' onClick= {() => this.removeColumn(column.id)}>
-                  <Icon name='ellipsis horizontal' />
-                </Menu.Item>
-              </Menu.Menu>
-            </Menu>
-            <Segment style={{minHeight: 500}} attached='bottom'>
-              {showColumnInput}
-              {items}
-            </Segment>
-
-          </Grid.Column>
-        )
-      })
-
+    const cols = this.props.board.map(column => <Column column={column} />)
+    // const columns = this.props.board.
     return (
       <div>
         <Grid columns={cols.length + 1} divided>
@@ -100,4 +68,5 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
+;
 export default connect(mapStateToProps)(Board);

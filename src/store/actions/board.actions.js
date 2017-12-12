@@ -30,3 +30,11 @@ export const addItemToColum = item => {
     item
   }
 }
+
+export const removeItemFromColumn = info => {
+  return {
+    type: 'REMOVE_ITEM_FROM_COLUMN',
+    id: info.columnId,
+    info
+  }
+}

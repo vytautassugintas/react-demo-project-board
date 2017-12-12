@@ -29,10 +29,20 @@ const board = (state = [{
     case 'ADD_ITEM_TO_COLUMN':
       return state.map(column => {
         if (column.id === action.item.columnId) {
-          column.items = [...column.items, {
-            id: action.item.id,
-            title: action.item.text
-          }];
+          column.items = [{
+            id: action.id,
+            title: action.item.text,
+            columnId: action.item.columnId,
+            timeAdded: new Date()
+          }, ...column.items];
+        }
+        return column;
+      })
+    case 'REMOVE_ITEM_FROM_COLUMN':
+      return state.map(column => {
+        if (column.id === action.info.columnId) {
+            console.log("removing", column);
+            column.items = column.items.filter(item => item.id !== action.info.itemId)
         }
         return column;
       })
