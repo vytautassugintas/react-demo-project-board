@@ -51,6 +51,11 @@ function Column(props) {
 
   const { connectDropTarget, column, dispatch } = props;
 
+  //todo: remove
+  React.useEffect(() => {
+    addCard(props.column.id, "Best Card");
+  }, []);
+
   const items = column.items.map(item => (
     <BoardCard key={item.id} item={item} />
   ));
@@ -72,18 +77,25 @@ function Column(props) {
   ) : null;
 
   return connectDropTarget(
-    <div>
+    <div className="column">
       <div style={{ maxWidth: 325 }} key={column.id}>
-        <div>
-          <h4>
-            {column.name} <span>{column.items.length}</span>
-          </h4>
-          <span>
-            <ul>
-              <li onClick={() => toggleAddCardInput(column.id)}>Add</li>
-              <li onClick={() => removeColumn(column.id)}>Remove</li>
-            </ul>
-          </span>
+        <div className="column__panel">
+          <div className="column__panel__header">
+            <span className="column__panel__label">
+              <span className="column__panel__label--text">
+                {column.items.length}
+              </span>
+            </span>{" "}
+            {column.name}
+          </div>
+          <div className="column__panel--left">
+            <div className="icon" onClick={() => toggleAddCardInput(column.id)}>
+              +
+            </div>
+            <div className="icon" onClick={() => removeColumn(column.id)}>
+              ···
+            </div>
+          </div>
         </div>
         <div style={{ minHeight: 500 }}>
           {showColumnInput}

@@ -37,10 +37,12 @@ function Board() {
 
   return (
     <BoardDispatch.Provider value={dispatch}>
-      <div>
-        <button onClick={addColumn}>Add column</button>
+      <div className="board-container">
+        {cols}
+        <div>
+          <button onClick={addColumn}>Add column</button>
+        </div>
       </div>
-      {cols}
     </BoardDispatch.Provider>
   );
 }

@@ -1,0 +1,51 @@
+.column {
+  border: 1px solid rgb(212, 212, 213);
+  border-radius: 5px;
+  padding: 12px;
+  margin: 12px;
+  min-width: 325px;
+  background-color: #dfe6e9;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 6px;
+  width: 24px;
+}
+
+.icon:hover {
+  color: #a29bfe;
+}
+
+.column__panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column__panel__header {
+  margin-top: 3px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.column__panel__label {
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: #a29bfe;
+}
+
+.column__panel__label--text {
+  font-size: 14px;
+}
+
+.column__panel--left {
+  display: flex;
+}
+
+.column__panel--right {
+  display: flex;
+}

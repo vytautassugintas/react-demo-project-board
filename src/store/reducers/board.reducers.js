@@ -10,7 +10,6 @@ const board = (
   ],
   action
 ) => {
-  console.log("reducing", action);
   switch (action.type) {
     case "ADD_COLUMN":
       return [

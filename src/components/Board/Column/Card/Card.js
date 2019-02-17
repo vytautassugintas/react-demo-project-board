@@ -24,15 +24,19 @@ function ColumnCard(props) {
   return connectDragSource(
     <div
       style={{
-        paddingTop: 12,
         opacity: isDragging ? 0.5 : 1,
         cursor: "move"
       }}
     >
       <div className="card">
         <div>
-          <p>{props.item.title}</p>
-          <span>{props.item.timeAdded.toDateString()}</span>
+          <div className="card__label">{props.item.title}</div>
+          <span className="card__meta">
+            <a className="card__meta__link" href={props.item.id}>
+              #{props.item.id}
+            </a>{" "}
+            {props.item.timeAdded.toDateString()}
+          </span>
         </div>
       </div>
     </div>

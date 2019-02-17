@@ -1,6 +1,22 @@
 .card {
+  background-color: #fff;
   border: 1px solid rgb(212, 212, 213);
   border-radius: 5px;
-  padding: 12px;
+  padding: 6px;
   min-width: 300px;
+  margin-top: 12px;
+}
+
+.card__label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.card__meta {
+  font-size: 12px;
+}
+
+.card__meta__link {
+  text-decoration: none;
+  color: #a29bfe;
 }
