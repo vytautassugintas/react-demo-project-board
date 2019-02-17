@@ -1,19 +1,18 @@
-const board = (
-  state = {
-    latestId: 0,
-    columns: [
-      {
-        latestId: 0,
-        id: "init_col",
-        name: "Column",
-        items: [],
-        completed: false,
-        showAddCardInput: false
-      }
-    ]
-  },
-  action
-) => {
+export const state = {
+  latestId: 0,
+  columns: [
+    {
+      latestId: 0,
+      id: "init_col",
+      name: "Column",
+      items: [],
+      completed: false,
+      showAddCardInput: false
+    }
+  ]
+};
+
+const boardReducer = (state, action) => {
   switch (action.type) {
     case "ADD_COLUMN":
       return {
@@ -46,16 +45,17 @@ const board = (
         })
       };
     case "ADD_ITEM_TO_COLUMN":
+      console.log(action);
       const newLatestItemId = state.latestId + 1;
       return {
         ...state,
-        latestId: newLatestItemId,
+        latestId: action.transfer ? state.latestId : newLatestItemId,
         columns: state.columns.map(column => {
           if (column.id === action.item.columnId) {
             column.items = [
               {
-                id: newLatestItemId,
-                title: action.item.text,
+                id: action.transfer ? action.item.id : newLatestItemId,
+                title: action.item.title,
                 columnId: action.item.columnId,
                 timeAdded: new Date().toDateString()
               },
@@ -83,4 +83,4 @@ const board = (
   }
 };
 
-export default board;
+export default boardReducer;

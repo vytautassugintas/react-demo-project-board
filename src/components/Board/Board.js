@@ -1,33 +1,24 @@
-import React, { useReducer } from "react";
+import React from "react";
 import {
   addColumn as addColumnAction,
   removeColumn as removeColumnAction
 } from "../../store/actions/board.actions";
-
 import Column from "../Column/Column";
+
+import boardReducer, {
+  state as initialState
+} from "../../store/reducers/board.reducers";
+import { BoardDispatch } from "./BoardDispatchContext";
+import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 
 import "./Board.css";
 
-import boardReducer from "../../store/reducers/board.reducers";
-
-import { BoardDispatch } from "./BoardDispatchContext";
-
-import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
-
 function Board() {
-  const [board, dispatch] = useLocalStorageReducer("boardState", boardReducer, {
-    latestId: 0,
-    columns: [
-      {
-        latestId: 0,
-        id: "init_col",
-        name: "Column",
-        items: [],
-        completed: false,
-        showAddCardInput: false
-      }
-    ]
-  });
+  const [board, dispatch] = useLocalStorageReducer(
+    "boardState",
+    boardReducer,
+    initialState
+  );
 
   const addColumn = () => {
     dispatch(addColumnAction("random stuff"));
@@ -36,7 +27,7 @@ function Board() {
   const removeColumn = columnId => {
     dispatch(removeColumnAction(columnId));
   };
-  console.log(board);
+
   const cols = board.columns.map(column => (
     <Column key={column.id} dispatch={dispatch} column={column} />
   ));

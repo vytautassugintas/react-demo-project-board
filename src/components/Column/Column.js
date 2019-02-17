@@ -16,7 +16,7 @@ function Column(props) {
   const [cardTitle, setCardTitle] = useState("");
 
   const addCard = (columnId, title) => {
-    dispatch(addItemToColum({ columnId: columnId, text: title }));
+    dispatch(addItemToColum({ columnId: columnId, title }));
     setCardTitle("");
   };
 
@@ -84,9 +84,19 @@ const boardTarget = {
     const { dispatch } = props;
 
     dispatch(
-      removeItemFromColumn({ columnId: item.columnId, itemId: item.id })
+      removeItemFromColumn({
+        columnId: item.columnId,
+        itemId: item.id,
+        transfer: true
+      })
     );
-    dispatch(addItemToColum({ columnId: props.column.id, text: item.title }));
+    dispatch(
+      addItemToColum({
+        ...item,
+        columnId: props.column.id,
+        transfer: true
+      })
+    );
 
     return {
       column: props.column
