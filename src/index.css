@@ -3,3 +3,41 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.button {
+  cursor: pointer;
+  height: 28px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 0;
+}
+
+.button--postive {
+  color: #fff;
+  background-color: #2ed573;
+}
+
+.button--postive:hover {
+  color: #fff;
+  background-color: #7bed9f;
+}
+
+.button--neutral {
+  background-color: #ffffff;
+}
+
+.button--neutral:hover {
+  background-color: #f1f2f6;
+}
+
+.button__group {
+  display: flex;
+}
+
+.button__group > button {
+  width: 100%;
+}
+
+.button__group > button:first-child {
+  margin-right: 6px;
+}

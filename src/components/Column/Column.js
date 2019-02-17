@@ -33,17 +33,28 @@ function Column(props) {
   ));
 
   const showColumnInput = column.showAddCardInput ? (
-    <div>
+    <div className="note__form">
       <textarea
+        className="note__form__textarea"
         name="cardTitle"
         value={cardTitle}
         onChange={e => handleChange(e)}
         placeholder="Tell us more"
         style={{ minHeight: 100 }}
       />
-      <div>
-        <button onClick={() => addCard(column.id, cardTitle)}>Add</button>
-        <button onClick={() => toggleAddCardInput(column.id)}>Cancel</button>
+      <div className="button__group">
+        <button
+          className="button button--postive"
+          onClick={() => addCard(column.id, cardTitle)}
+        >
+          Add
+        </button>
+        <button
+          className="button button--neutral"
+          onClick={() => toggleAddCardInput(column.id)}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   ) : null;

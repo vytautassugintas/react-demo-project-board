@@ -15,7 +15,7 @@
 }
 
 .icon:hover {
-  color: #a29bfe;
+  color: #5352ed;
 }
 
 .column__panel {
@@ -35,7 +35,7 @@
   border-radius: 50%;
   width: 22px;
   height: 22px;
-  background-color: #a29bfe;
+  background-color: #5352ed;
 }
 
 .column__panel__label--text {
@@ -48,4 +48,16 @@
 
 .column__panel--right {
   display: flex;
+}
+
+.note__form {
+  margin-top: 12px;
+}
+
+.note__form__textarea {
+  border: 1px solid rgb(212, 212, 213);
+  border-radius: 5px;
+  padding: 6px;
+  min-width: 311px;
+  margin-top: 6px;
 }
