@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BoardCard from "../Card/Card";
 import {
   addItemToColum,
@@ -33,7 +33,7 @@ function Column(props) {
   ));
 
   return connectDropTarget(
-    <div className="column">
+    <div className="column" tabindex="9">
       <div style={{ maxWidth: 325 }} key={column.id}>
         <div className="column__panel">
           <div className="column__panel__header">

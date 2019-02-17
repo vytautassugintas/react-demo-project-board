@@ -5,7 +5,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import "./Card.css";
 
 function BoardCard(props) {
-  const { text, isDragging, connectDragSource, connectDropTarget } = props;
+  const { isDragging, connectDragSource, connectDropTarget } = props;
 
   return connectDragSource(
     connectDropTarget(
@@ -15,7 +15,7 @@ function BoardCard(props) {
           cursor: "move"
         }}
       >
-        <div className="card">
+        <div className="card" tabindex="1">
           <div>
             <div className="card__label">{props.item.title}</div>
             <span className="card__meta">

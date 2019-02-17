@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  addColumn as addColumnAction,
-  removeColumn as removeColumnAction
-} from "../../store/actions/board.actions";
-import Column from "../Column/Column";
-
+import { addColumn as addColumnAction } from "../../store/actions/board.actions";
 import boardReducer, {
   state as initialState
 } from "../../store/reducers/board.reducers";
-import { BoardDispatch } from "../../BoardDispatchContext";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
+import { BoardDispatch } from "../../BoardDispatchContext";
+import Column from "../Column/Column";
 
 import "./Board.css";
 
@@ -22,10 +18,6 @@ function Board() {
 
   const addColumn = () => {
     dispatch(addColumnAction("random stuff"));
-  };
-
-  const removeColumn = columnId => {
-    dispatch(removeColumnAction(columnId));
   };
 
   const cols = board.columns.map(column => (

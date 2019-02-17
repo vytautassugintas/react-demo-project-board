@@ -1,16 +1,44 @@
 export const state = {
   latestId: 0,
   columns: [
-    {
-      latestId: 0,
-      id: "init_col",
-      name: "Column",
-      items: [],
-      completed: false,
-      showAddCardInput: false
-    }
+    createColumn({ id: 0, name: "TODO" }),
+    createColumn({ id: 1, name: "In Progress" }),
+    createColumn({ id: 2, name: "Done" })
   ]
 };
+
+function createColumn({ id, name }) {
+  return {
+    latestId: 2,
+    id,
+    name,
+    items:
+      name === "TODO"
+        ? [
+            {
+              id: 0,
+              title: "Read a Book",
+              columnId: 0,
+              timeAdded: new Date().toDateString()
+            },
+            {
+              id: 1,
+              title: "Build a House",
+              columnId: 0,
+              timeAdded: new Date().toDateString()
+            },
+            {
+              id: 2,
+              title: "Create new Card",
+              columnId: 0,
+              timeAdded: new Date().toDateString()
+            }
+          ]
+        : [],
+    completed: false,
+    showAddCardInput: false
+  };
+}
 
 const boardReducer = (state, action) => {
   switch (action.type) {

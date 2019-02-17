@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-
 import { BoardDispatch } from "../../BoardDispatchContext";
 import {
   addItemToColum,
@@ -46,7 +45,7 @@ export const AddNoteForm = ({ column }) => {
           className="button button--neutral"
           onClick={() => toggleAddCardInput(column.id)}
         >
-          Cancel
+          Close
         </button>
       </div>
     </div>
