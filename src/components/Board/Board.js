@@ -8,7 +8,7 @@ import Column from "../Column/Column";
 import boardReducer, {
   state as initialState
 } from "../../store/reducers/board.reducers";
-import { BoardDispatch } from "./BoardDispatchContext";
+import { BoardDispatch } from "../../BoardDispatchContext";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 
 import "./Board.css";
@@ -36,8 +36,15 @@ function Board() {
     <BoardDispatch.Provider value={dispatch}>
       <div className="board-container">
         {cols}
-        <div>
-          <button onClick={addColumn}>Add column</button>
+        <div className="column column--dashed">
+          <div className="column__placeholder">
+            <button
+              className="button button--primary button--bold"
+              onClick={addColumn}
+            >
+              + Add column
+            </button>
+          </div>
         </div>
       </div>
     </BoardDispatch.Provider>

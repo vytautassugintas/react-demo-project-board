@@ -40,6 +40,14 @@ body {
   background-color: #f1f2f6;
 }
 
+.button--bold {
+  font-weight: bold;
+}
+
+.button--bold {
+  font-weight: bold;
+}
+
 .button__group {
   padding-top: 3px;
   display: flex;

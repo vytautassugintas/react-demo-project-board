@@ -8,24 +8,14 @@ import {
   moveItem
 } from "../../store/actions/board.actions";
 import { DropTarget } from "react-dnd";
-
+import { AddNoteForm } from "../AddNoteForm/AddNoteForm";
 import "./Column.css";
 
 function Column(props) {
-  const { connectDropTarget, column, dispatch, isOver } = props;
-  const [cardTitle, setCardTitle] = useState("");
-
-  const addCard = (columnId, title) => {
-    dispatch(addItemToColum({ columnId: columnId, title }));
-    setCardTitle("");
-  };
+  const { connectDropTarget, column, dispatch } = props;
 
   const toggleAddCardInput = columnId => {
     dispatch(toggleColumnInput(columnId));
-  };
-
-  const handleChange = e => {
-    setCardTitle(e.target.value);
   };
 
   const moveCard = (dragIndex, hoverIndex) => {
@@ -41,33 +31,6 @@ function Column(props) {
   const items = column.items.map((item, index) => (
     <BoardCard key={item.id} item={item} index={index} moveCard={moveCard} />
   ));
-
-  const showColumnInput = column.showAddCardInput ? (
-    <div className="note__form">
-      <textarea
-        className="note__form__textarea"
-        name="cardTitle"
-        value={cardTitle}
-        onChange={e => handleChange(e)}
-        placeholder="Enter a note"
-        style={{ minHeight: 76 }}
-      />
-      <div className="button__group">
-        <button
-          className="button button--primary"
-          onClick={() => addCard(column.id, cardTitle)}
-        >
-          Add
-        </button>
-        <button
-          className="button button--neutral"
-          onClick={() => toggleAddCardInput(column.id)}
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  ) : null;
 
   return connectDropTarget(
     <div className="column">
@@ -91,7 +54,7 @@ function Column(props) {
           </div>
         </div>
         <div style={{ minHeight: 500 }}>
-          {showColumnInput}
+          {column.showAddCardInput && <AddNoteForm column={column} />}
           {items}
         </div>
       </div>
