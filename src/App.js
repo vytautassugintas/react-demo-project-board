@@ -7,7 +7,7 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{ padding: 12 }}>
         <Board />
       </div>
     );

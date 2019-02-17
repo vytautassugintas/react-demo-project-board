@@ -1,6 +1,7 @@
 import React from "react";
 import { DragSource } from "react-dnd";
-import { Card, Icon } from "semantic-ui-react";
+
+import "./Card.css";
 
 const cardSource = {
   beginDrag(props) {
@@ -21,15 +22,19 @@ function ColumnCard(props) {
   const { connectDragSource, isDragging } = props;
 
   return connectDragSource(
-    <div style={{ paddingTop: 12 }}>
-      <Card style={{ opacity: isDragging ? 0.5 : 1, cursor: "move" }}>
-        <Card.Content>
-          <Card.Header>
-            {props.item.title} <Icon link name="ellipsis horizontal" />
-          </Card.Header>
-          <Card.Meta>{props.item.timeAdded.toDateString()}</Card.Meta>
-        </Card.Content>
-      </Card>
+    <div
+      style={{
+        paddingTop: 12,
+        opacity: isDragging ? 0.5 : 1,
+        cursor: "move"
+      }}
+    >
+      <div className="card">
+        <div>
+          <p>{props.item.title}</p>
+          <span>{props.item.timeAdded.toDateString()}</span>
+        </div>
+      </div>
     </div>
   );
 }

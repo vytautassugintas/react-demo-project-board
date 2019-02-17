@@ -1,14 +1,4 @@
 import React, { useState } from "react";
-import {
-  Label,
-  Button,
-  Segment,
-  Menu,
-  Icon,
-  Grid,
-  Form,
-  TextArea
-} from "semantic-ui-react";
 import BoardCard from "./Card/Card";
 import {
   addItemToColum,
@@ -17,6 +7,8 @@ import {
   toggleColumnInput
 } from "../../../store/actions/board.actions";
 import { DropTarget } from "react-dnd";
+
+import "./Column.css";
 
 const boardTarget = {
   drop(props, monitor) {
@@ -64,57 +56,40 @@ function Column(props) {
   ));
 
   const showColumnInput = column.showAddCardInput ? (
-    <Form>
-      <Form.Group inline>
-        <TextArea
-          name="cardTitle"
-          value={cardTitle}
-          onChange={e => handleChange(e)}
-          placeholder="Tell us more"
-          style={{ minHeight: 100 }}
-        />
-      </Form.Group>
-      <Button.Group attached="bottom">
-        <Button primary onClick={() => addCard(column.id, cardTitle)}>
-          Add
-        </Button>
-        <Button onClick={() => toggleAddCardInput(column.id)}>Cancel</Button>
-      </Button.Group>
-    </Form>
+    <div>
+      <textarea
+        name="cardTitle"
+        value={cardTitle}
+        onChange={e => handleChange(e)}
+        placeholder="Tell us more"
+        style={{ minHeight: 100 }}
+      />
+      <div>
+        <button onClick={() => addCard(column.id, cardTitle)}>Add</button>
+        <button onClick={() => toggleAddCardInput(column.id)}>Cancel</button>
+      </div>
+    </div>
   ) : null;
 
   return connectDropTarget(
     <div>
-      <Grid.Column style={{ maxWidth: 315 }} key={column.id}>
-        <Menu attached="top" borderless>
-          <Menu.Item>
-            <h4>
-              {column.name}{" "}
-              <Label circular as="a">
-                {column.items.length}
-              </Label>
-            </h4>
-          </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item
-              name="video camera"
-              onClick={() => toggleAddCardInput(column.id)}
-            >
-              <Icon name="plus" />
-            </Menu.Item>
-            <Menu.Item
-              name="video play"
-              onClick={() => removeColumn(column.id)}
-            >
-              <Icon name="ellipsis horizontal" />
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-        <Segment style={{ minHeight: 500 }} attached="bottom">
+      <div style={{ maxWidth: 325 }} key={column.id}>
+        <div>
+          <h4>
+            {column.name} <span>{column.items.length}</span>
+          </h4>
+          <span>
+            <ul>
+              <li onClick={() => toggleAddCardInput(column.id)}>Add</li>
+              <li onClick={() => removeColumn(column.id)}>Remove</li>
+            </ul>
+          </span>
+        </div>
+        <div style={{ minHeight: 500 }}>
           {showColumnInput}
           {items}
-        </Segment>
-      </Grid.Column>
+        </div>
+      </div>
     </div>
   );
 }

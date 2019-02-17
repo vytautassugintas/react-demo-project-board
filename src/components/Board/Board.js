@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import { Button, Grid } from "semantic-ui-react";
 import {
   addColumn as addColumnAction,
   removeColumn as removeColumnAction
@@ -38,18 +37,10 @@ function Board() {
 
   return (
     <BoardDispatch.Provider value={dispatch}>
-      <Grid columns={cols.length + 1} divided>
-        {cols}
-        <Grid.Column>
-          <Button
-            onClick={addColumn}
-            primary
-            content="Add column"
-            icon="plus"
-            labelPosition="left"
-          />
-        </Grid.Column>
-      </Grid>
+      <div>
+        <button onClick={addColumn}>Add column</button>
+      </div>
+      {cols}
     </BoardDispatch.Provider>
   );
 }
