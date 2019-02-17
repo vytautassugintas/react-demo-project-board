@@ -1,7 +1,7 @@
 {
   "name": "react-demo-project-board",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "react-scripts": "2.0.3",
     "react": "^16.8.0",

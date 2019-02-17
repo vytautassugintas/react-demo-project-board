@@ -3,21 +3,6 @@ import { DragSource } from "react-dnd";
 
 import "./Card.css";
 
-const cardSource = {
-  beginDrag(props) {
-    return {
-      item: props.item
-    };
-  }
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  };
-}
-
 function ColumnCard(props) {
   const { connectDragSource, isDragging } = props;
 
@@ -41,6 +26,21 @@ function ColumnCard(props) {
       </div>
     </div>
   );
+}
+
+const cardSource = {
+  beginDrag(props) {
+    return {
+      item: props.item
+    };
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  };
 }
 
 export default DragSource("ColumnCard", cardSource, collect)(ColumnCard);

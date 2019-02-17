@@ -10,29 +10,6 @@ import { DropTarget } from "react-dnd";
 
 import "./Column.css";
 
-const boardTarget = {
-  drop(props, monitor) {
-    const { item } = monitor.getItem();
-    const { dispatch } = props;
-
-    dispatch(
-      removeItemFromColumn({ columnId: item.columnId, itemId: item.id })
-    );
-    dispatch(addItemToColum({ columnId: props.column.id, text: item.title }));
-
-    return {
-      column: props.column
-    };
-  }
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver()
-  };
-}
-
 function Column(props) {
   const [cardTitle, setCardTitle] = useState("");
 
@@ -104,6 +81,29 @@ function Column(props) {
       </div>
     </div>
   );
+}
+
+const boardTarget = {
+  drop(props, monitor) {
+    const { item } = monitor.getItem();
+    const { dispatch } = props;
+
+    dispatch(
+      removeItemFromColumn({ columnId: item.columnId, itemId: item.id })
+    );
+    dispatch(addItemToColum({ columnId: props.column.id, text: item.title }));
+
+    return {
+      column: props.column
+    };
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  };
 }
 
 export default DropTarget("ColumnCard", boardTarget, collect)(Column);
