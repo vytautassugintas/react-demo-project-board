@@ -2,18 +2,22 @@
   "name": "react-demo-project-board",
   "version": "1.0.0",
   "private": false,
+  "homepage": "https://vytautassugintas.github.io/app-project-boards",
   "dependencies": {
-    "react-scripts": "2.0.3",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "react-dnd": "^2.5.4",
-    "react-dnd-html5-backend": "^2.5.4"
+    "react-dnd-html5-backend": "^2.5.4",
+    "react-dom": "^16.8.0",
+    "react-scripts": "2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
