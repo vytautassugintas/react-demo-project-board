@@ -33,7 +33,7 @@ function Column(props) {
   ));
 
   return connectDropTarget(
-    <div className="column" tabindex="9">
+    <div className="column" tabIndex="9">
       <div style={{ maxWidth: 325 }} key={column.id}>
         <div className="column__panel">
           <div className="column__panel__header">

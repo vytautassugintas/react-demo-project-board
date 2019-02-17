@@ -15,7 +15,7 @@ function BoardCard(props) {
           cursor: "move"
         }}
       >
-        <div className="card" tabindex="1">
+        <div className="card" tabIndex="1">
           <div>
             <div className="card__label">{props.item.title}</div>
             <span className="card__meta">

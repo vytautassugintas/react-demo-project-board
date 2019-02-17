@@ -1,19 +1,17 @@
 export const state = {
-  latestId: 0,
+  latestId: 2,
   columns: [
-    createColumn({ id: 0, name: "TODO" }),
-    createColumn({ id: 1, name: "In Progress" }),
+    createColumn({ id: 0, name: "Todo" }),
     createColumn({ id: 2, name: "Done" })
   ]
 };
 
 function createColumn({ id, name }) {
   return {
-    latestId: 2,
     id,
     name,
     items:
-      name === "TODO"
+      name === "Todo"
         ? [
             {
               id: 0,
