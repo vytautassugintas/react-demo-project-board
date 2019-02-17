@@ -20,7 +20,7 @@ function ColumnCard(props) {
             <a className="card__meta__link" href={props.item.id}>
               #{props.item.id}
             </a>{" "}
-            {props.item.timeAdded.toDateString()}
+            {props.item.timeAdded}
           </span>
         </div>
       </div>

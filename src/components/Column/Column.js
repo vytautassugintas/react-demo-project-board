@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import BoardCard from "./Card/Card";
+import BoardCard from "../Card/Card";
 import {
   addItemToColum,
   removeColumn,
   removeItemFromColumn,
   toggleColumnInput
-} from "../../../store/actions/board.actions";
+} from "../../store/actions/board.actions";
 import { DropTarget } from "react-dnd";
 
 import "./Column.css";
 
 function Column(props) {
+  const { connectDropTarget, column, dispatch } = props;
+
   const [cardTitle, setCardTitle] = useState("");
 
   const addCard = (columnId, title) => {
@@ -25,13 +27,6 @@ function Column(props) {
   const handleChange = e => {
     setCardTitle(e.target.value);
   };
-
-  const { connectDropTarget, column, dispatch } = props;
-
-  //todo: remove
-  React.useEffect(() => {
-    addCard(props.column.id, "Best Card");
-  }, []);
 
   const items = column.items.map(item => (
     <BoardCard key={item.id} item={item} />
