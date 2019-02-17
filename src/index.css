@@ -12,6 +12,16 @@ body {
   border: 0;
 }
 
+.button--primary {
+  background-color: #5352ed;
+  color: #ffffff;
+}
+
+.button--primary:hover {
+  background-color: #3742fa;
+  color: #ffffff;
+}
+
 .button--postive {
   color: #fff;
   background-color: #2ed573;
@@ -31,6 +41,7 @@ body {
 }
 
 .button__group {
+  padding-top: 3px;
   display: flex;
 }
 

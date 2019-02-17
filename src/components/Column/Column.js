@@ -4,15 +4,15 @@ import {
   addItemToColum,
   removeColumn,
   removeItemFromColumn,
-  toggleColumnInput
+  toggleColumnInput,
+  moveItem
 } from "../../store/actions/board.actions";
 import { DropTarget } from "react-dnd";
 
 import "./Column.css";
 
 function Column(props) {
-  const { connectDropTarget, column, dispatch } = props;
-
+  const { connectDropTarget, column, dispatch, isOver } = props;
   const [cardTitle, setCardTitle] = useState("");
 
   const addCard = (columnId, title) => {
@@ -28,8 +28,18 @@ function Column(props) {
     setCardTitle(e.target.value);
   };
 
-  const items = column.items.map(item => (
-    <BoardCard key={item.id} item={item} />
+  const moveCard = (dragIndex, hoverIndex) => {
+    dispatch(
+      moveItem({
+        dragIndex,
+        hoverIndex,
+        columnId: column.id
+      })
+    );
+  };
+
+  const items = column.items.map((item, index) => (
+    <BoardCard key={item.id} item={item} index={index} moveCard={moveCard} />
   ));
 
   const showColumnInput = column.showAddCardInput ? (
@@ -39,12 +49,12 @@ function Column(props) {
         name="cardTitle"
         value={cardTitle}
         onChange={e => handleChange(e)}
-        placeholder="Tell us more"
-        style={{ minHeight: 100 }}
+        placeholder="Enter a note"
+        style={{ minHeight: 76 }}
       />
       <div className="button__group">
         <button
-          className="button button--postive"
+          className="button button--primary"
           onClick={() => addCard(column.id, cardTitle)}
         >
           Add
@@ -91,24 +101,25 @@ function Column(props) {
 
 const boardTarget = {
   drop(props, monitor) {
-    const { item } = monitor.getItem();
+    const item = monitor.getItem();
     const { dispatch } = props;
 
-    dispatch(
-      removeItemFromColumn({
-        columnId: item.columnId,
-        itemId: item.id,
-        transfer: true
-      })
-    );
-    dispatch(
-      addItemToColum({
-        ...item,
-        columnId: props.column.id,
-        transfer: true
-      })
-    );
-
+    if (item.columnId !== props.column.id) {
+      dispatch(
+        removeItemFromColumn({
+          columnId: item.columnId,
+          itemId: item.id,
+          transfer: true
+        })
+      );
+      dispatch(
+        addItemToColum({
+          ...item,
+          columnId: props.column.id,
+          transfer: true
+        })
+      );
+    }
     return {
       column: props.column
     };
@@ -122,4 +133,4 @@ function collect(connect, monitor) {
   };
 }
 
-export default DropTarget("ColumnCard", boardTarget, collect)(Column);
+export default DropTarget("Card", boardTarget, collect)(Column);

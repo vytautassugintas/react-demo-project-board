@@ -45,7 +45,6 @@ const boardReducer = (state, action) => {
         })
       };
     case "ADD_ITEM_TO_COLUMN":
-      console.log(action);
       const newLatestItemId = state.latestId + 1;
       return {
         ...state,
@@ -70,10 +69,24 @@ const boardReducer = (state, action) => {
         ...state,
         columns: state.columns.map(column => {
           if (column.id === action.info.columnId) {
-            console.log("removing", column);
             column.items = column.items.filter(
               item => item.id !== action.info.itemId
             );
+          }
+          return column;
+        })
+      };
+    case "MOVE_ITEM":
+      return {
+        ...state,
+        columns: state.columns.map(column => {
+          if (column.id === action.columnId) {
+            const { dragIndex, hoverIndex } = action;
+            const temp = column.items[dragIndex];
+            if (temp) {
+              column.items[dragIndex] = column.items[hoverIndex];
+              column.items[hoverIndex] = temp;
+            }
           }
           return column;
         })

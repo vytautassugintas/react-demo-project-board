@@ -28,3 +28,10 @@ export const removeItemFromColumn = info => ({
   transfer: info.transfer || false,
   info
 });
+
+export const moveItem = payload => ({
+  type: "MOVE_ITEM",
+  dragIndex: payload.dragIndex,
+  hoverIndex: payload.hoverIndex,
+  columnId: payload.columnId
+});
