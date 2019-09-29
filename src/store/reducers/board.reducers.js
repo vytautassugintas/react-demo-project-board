@@ -2,7 +2,7 @@ export const state = {
   latestId: 2,
   columns: [
     createColumn({ id: 0, name: "Todo" }),
-    createColumn({ id: 2, name: "Done" })
+    createColumn({ id: 1, name: "Done" })
   ]
 };
 

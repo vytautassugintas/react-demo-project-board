@@ -1,4 +1,4 @@
-let nextTodoId = 0;
+let nextTodoId = 777;
 
 export const addColumn = text => ({
   type: "ADD_COLUMN",
