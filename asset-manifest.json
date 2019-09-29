@@ -1,13 +1,15 @@
 {
-  "main.css": "/app-project-boards/static/css/main.0a3c1dd2.chunk.css",
-  "main.js": "/app-project-boards/static/js/main.f5496f15.chunk.js",
-  "main.js.map": "/app-project-boards/static/js/main.f5496f15.chunk.js.map",
-  "static/js/1.ca89e114.chunk.js": "/app-project-boards/static/js/1.ca89e114.chunk.js",
-  "static/js/1.ca89e114.chunk.js.map": "/app-project-boards/static/js/1.ca89e114.chunk.js.map",
-  "runtime~main.js": "/app-project-boards/static/js/runtime~main.2ad65da4.js",
-  "runtime~main.js.map": "/app-project-boards/static/js/runtime~main.2ad65da4.js.map",
-  "static/css/main.0a3c1dd2.chunk.css.map": "/app-project-boards/static/css/main.0a3c1dd2.chunk.css.map",
-  "index.html": "/app-project-boards/index.html",
-  "precache-manifest.6e783df601e3b18309e684d3ef208310.js": "/app-project-boards/precache-manifest.6e783df601e3b18309e684d3ef208310.js",
-  "service-worker.js": "/app-project-boards/service-worker.js"
+  "files": {
+    "main.css": "/app-project-boards/static/css/main.e8fe9d14.chunk.css",
+    "main.js": "/app-project-boards/static/js/main.fd14905f.chunk.js",
+    "main.js.map": "/app-project-boards/static/js/main.fd14905f.chunk.js.map",
+    "runtime-main.js": "/app-project-boards/static/js/runtime-main.8a985db6.js",
+    "runtime-main.js.map": "/app-project-boards/static/js/runtime-main.8a985db6.js.map",
+    "static/js/2.03b73832.chunk.js": "/app-project-boards/static/js/2.03b73832.chunk.js",
+    "static/js/2.03b73832.chunk.js.map": "/app-project-boards/static/js/2.03b73832.chunk.js.map",
+    "index.html": "/app-project-boards/index.html",
+    "precache-manifest.b6dbb49578bc8598b28e074735c73246.js": "/app-project-boards/precache-manifest.b6dbb49578bc8598b28e074735c73246.js",
+    "service-worker.js": "/app-project-boards/service-worker.js",
+    "static/css/main.e8fe9d14.chunk.css.map": "/app-project-boards/static/css/main.e8fe9d14.chunk.css.map"
+  }
 }
